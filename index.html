@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuraStudy — Your Private AI Study Assistant</title>
+  <meta name="description" content="Local-first, self-hosted AI study assistant. Upload study materials and instantly generate flashcards, quizzes, and chat with your documents — all powered by any OpenAI-compatible LLM.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236c63ff'/%3E%3Ctext x='16' y='22' font-family='Inter, sans-serif' font-size='18' font-weight='800' fill='white' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="#" class="navbar__logo">
+        <svg class="navbar__logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="#6c63ff"/>
+          <text x="16" y="22" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="white" text-anchor="middle">L</text>
+        </svg>
+        <span class="navbar__logo-text">LuraStudy</span>
+      </a>
+      <ul class="navbar__links" id="navLinks">
+        <li><a href="#quick-start" class="navbar__link">Quick Start</a></li>
+        <li><a href="#features" class="navbar__link">Features</a></li>
+        <li><a href="#how-it-works" class="navbar__link">How It Works</a></li>
+        <li><a href="#tech-stack" class="navbar__link">Tech Stack</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="theme-toggle__icon theme-toggle__sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="hero">
+    <div class="hero__bg-glow"></div>
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <div class="hero__badge">v0.1.0 · MIT Licensed</div>
+        <h1 class="hero__title">
+          Your <span class="gradient-text">Private</span> AI Study Assistant
+        </h1>
+        <p class="hero__subtitle">
+          Local-first, self-hosted, and privacy-focused. Upload your study materials and instantly generate flashcards, take AI-powered quizzes, and chat with your documents — all running on your own machine.
+        </p>
+        <div class="hero__pillars">
+          <div class="hero__pillar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Privacy-First
+          </div>
+          <div class="hero__pillar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Local-First
+          </div>
+          <div class="hero__pillar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            AI-Powered
+          </div>
+        </div>
+        <div class="hero__cta">
+          <a href="#quick-start" class="btn btn--primary">Quick Start</a>
+          <a href="https://github.com/JoshuaJeffreyGimmel/lurastudy" target="_blank" rel="noopener" class="btn btn--ghost">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <div class="hero__mockup">
+          <div class="mockup__bar">
+            <span></span><span></span><span></span>
+            <span class="mockup__bar-title">LuraStudy</span>
+          </div>
+          <div class="mockup__content">
+            <div class="mockup__sidebar">
+              <div class="mockup__sidebar-item"></div>
+              <div class="mockup__sidebar-item"></div>
+              <div class="mockup__sidebar-item"></div>
+            </div>
+            <div class="mockup__main">
+              <div class="mockup__card">
+                <div class="mockup__card-header"></div>
+                <div class="mockup__card-body">
+                  <div class="mockup__line"></div>
+                  <div class="mockup__line"></div>
+                  <div class="mockup__line mockup__line--short"></div>
+                </div>
+              </div>
+              <div class="mockup__card">
+                <div class="mockup__card-header"></div>
+                <div class="mockup__card-body">
+                  <div class="mockup__line"></div>
+                  <div class="mockup__line"></div>
+                  <div class="mockup__line mockup__line--short"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mockup__glow"></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero__scroll-indicator">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+    </div>
+  </section>
+
+  <!-- ==================== QUICK START ==================== -->
+  <section class="quick-start section" id="quick-start">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section__label">Quick Start</span>
+        <h2 class="section__title">Get Running in <span class="gradient-text">One Command</span></h2>
+        <p class="section__desc">Choose your path — one-line installers or manual Docker setup.</p>
+      </div>
+
+      <div class="install-tabs fade-in">
+        <div class="install-tabs__buttons">
+          <button class="install-tab active" data-tab="linux">Linux / macOS</button>
+          <button class="install-tab" data-tab="windows">Windows</button>
+          <button class="install-tab" data-tab="docker">Docker Compose</button>
+          <button class="install-tab" data-tab="cloud">Cloud AI (OpenAI)</button>
+        </div>
+
+        <div class="install-tabs__content active" id="tab-linux">
+          <div class="code-block">
+            <button class="code-block__copy" data-copy="curl -fsSL https://raw.githubusercontent.com/JoshuaJeffreyGimmel/lurastudy/main/install.sh | sh">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+            <pre><code><span class="code-comment"># One-command installer</span>
+curl -fsSL https://raw.githubusercontent.com/JoshuaJeffreyGimmel/lurastudy/main/install.sh | sh</code></pre>
+          </div>
+        </div>
+
+        <div class="install-tabs__content" id="tab-windows">
+          <div class="code-block">
+            <button class="code-block__copy" data-copy="iwr -useb https://raw.githubusercontent.com/JoshuaJeffreyGimmel/lurastudy/main/install.ps1 | iex">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+            <pre><code><span class="code-comment"># One-command installer (PowerShell)</span>
+iwr -useb https://raw.githubusercontent.com/JoshuaJeffreyGimmel/lurastudy/main/install.ps1 | iex</code></pre>
+          </div>
+        </div>
+
+        <div class="install-tabs__content" id="tab-docker">
+          <div class="code-block">
+            <button class="code-block__copy" data-copy="git clone https://github.com/JoshuaJeffreyGimmel/lurastudy.git && cd lurastudy && cp .env.example .env && docker compose up --build">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+            <pre><code><span class="code-comment"># Manual Docker setup</span>
+git clone https://github.com/JoshuaJeffreyGimmel/lurastudy.git
+<span class="code-comment">cd lurastudy</span>
+cp .env.example .env
+docker compose up --build</code></pre>
+          </div>
+          <div class="install-note">
+            <p>Then open <strong>http://localhost:5173/register</strong> — the first user is automatically the admin.</p>
+          </div>
+        </div>
+
+        <div class="install-tabs__content" id="tab-cloud">
+          <div class="code-block">
+            <button class="code-block__copy" data-copy="docker compose -f docker-compose.yml -f docker-compose.cloud.yml up --build">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+            <pre><code><span class="code-comment"># Cloud AI profile (OpenAI)</span>
+docker compose -f docker-compose.yml -f docker-compose.cloud.yml up --build</code></pre>
+          </div>
+          <div class="install-note">
+            <p>Set your <code>.env</code> with OpenAI API key, model, and endpoint. See the <a href="https://github.com/JoshuaJeffreyGimmel/lurastudy" target="_blank" rel="noopener">README</a> for details.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="requirements fade-in">
+        <h3 class="requirements__title">System Requirements</h3>
+        <div class="requirements__table-wrapper">
+          <table class="requirements__table">
+            <thead>
+              <tr>
+                <th>Resource</th>
+                <th>Minimum</th>
+                <th>Recommended</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>RAM</td>
+                <td>4 GB (with llama3.2:1b)</td>
+                <td>8–16 GB</td>
+              </tr>
+              <tr>
+                <td>Disk</td>
+                <td>5 GB free</td>
+                <td>10+ GB</td>
+              </tr>
+              <tr>
+                <td>OS</td>
+                <td>Windows 10+, macOS 12+, Linux</td>
+                <td>Windows 11, macOS 14+, Ubuntu 22+</td>
+              </tr>
+              <tr>
+                <td>Docker</td>
+                <td>Docker Desktop 4.x+</td>
+                <td>Latest</td>
+              </tr>
+              <tr>
+                <td>Ollama</td>
+                <td>0.3+</td>
+                <td>Latest</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="requirements__note">💡 Ollama models: <code>ollama pull llama3.2</code> and <code>ollama pull nomic-embed-text</code></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURES ==================== -->
+  <section class="features section" id="features">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section__label">Features</span>
+        <h2 class="section__title">Everything You Need to <span class="gradient-text">Study Smarter</span></h2>
+        <p class="section__desc">26+ features packed into a self-hosted, privacy-first learning platform.</p>
+      </div>
+      <div class="features__grid">
+        <div class="feature-card fade-in" style="--i: 0">
+          <div class="feature-card__icon" style="--icon-bg: rgba(108, 99, 255, 0.15); --icon-color: #6c63ff">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3 class="feature-card__title">Document Intelligence</h3>
+          <p class="feature-card__desc">Upload PDF, DOCX, PPTX, XLSX, Markdown, HTML, CSV, XML, IPYNB, and plain text. Text is extracted, chunked, and embedded automatically.</p>
+        </div>
+
+        <div class="feature-card fade-in" style="--i: 1">
+          <div class="feature-card__icon" style="--icon-bg: rgba(34, 197, 94, 0.15); --icon-color: #22c55e">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <h3 class="feature-card__title">Smart Flashcards</h3>
+          <p class="feature-card__desc">AI-generated flashcard decks using structured JSON prompts. SM-2 spaced repetition with 3D flip-card animations and Easy/Got It/Again rating.</p>
+        </div>
+
+        <div class="feature-card fade-in" style="--i: 2">
+          <div class="feature-card__icon" style="--icon-bg: rgba(245, 158, 11, 0.15); --icon-color: #f59e0b">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <h3 class="feature-card__title">AI-Powered Quizzes</h3>
+          <p class="feature-card__desc">Generate multiple-choice, fill-in-the-blank, cloze, and calculation quizzes from your documents. Save attempts and track scoring history.</p>
+        </div>
+
+        <div class="feature-card fade-in" style="--i: 3">
+          <div class="feature-card__icon" style="--icon-bg: rgba(108, 99, 255, 0.15); --icon-color: #6c63ff">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3 class="feature-card__title">Chat with Documents</h3>
+          <p class="feature-card__desc">RAG-powered Q&A with your source materials. Ask questions, get answers grounded in your documents. Conversations are saved and resumable.</p>
+        </div>
+
+        <div class="feature-card fade-in" style="--i: 4">
+          <div class="feature-card__icon" style="--icon-bg: rgba(34, 197, 94, 0.15); --icon-color: #22c55e">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3 class="feature-card__title">Chunk Preview</h3>
+          <p class="feature-card__desc">Full transparency — inspect every text chunk extracted from your documents with live search and highlighting. See exactly what the AI sees.</p>
+        </div>
+
+        <div class="feature-card fade-in" style="--i: 5">
+          <div class="feature-card__icon" style="--icon-bg: rgba(245, 158, 11, 0.15); --icon-color: #f59e0b">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h3 class="feature-card__title">Customizable UI</h3>
+          <p class="feature-card__desc">Customize every UI color with live preview. Choose from preset themes, pick exact hex values, select fonts, and export/import themes as JSON.</p>
+        </div>
+
+        <div class="feature-card fade-in" style="--i: 6">
+          <div class="feature-card__icon" style="--icon-bg: rgba(108, 99, 255, 0.15); --icon-color: #6c63ff">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3 class="feature-card__title">Private by Design</h3>
+          <p class="feature-card__desc">Works entirely with Ollama — no data ever leaves your machine. Per-user data isolation with JWT authentication and encrypted passwords.</p>
+        </div>
+
+        <div class="feature-card fade-in" style="--i: 7">
+          <div class="feature-card__icon" style="--icon-bg: rgba(34, 197, 94, 0.15); --icon-color: #22c55e">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l10-10m0 0l5 5m-5-5v12"/></svg>
+          </div>
+          <h3 class="feature-card__title">One-Command Deploy</h3>
+          <p class="feature-card__desc">Single Docker Compose command spins up PostgreSQL + Backend + Frontend. One-liner installers for Linux, macOS, and Windows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HOW IT WORKS ==================== -->
+  <section class="how-it-works section" id="how-it-works">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section__label">How It Works</span>
+        <h2 class="section__title">From Upload to <span class="gradient-text">Mastery</span> in Minutes</h2>
+        <p class="section__desc">Three simple steps to transform your study materials into an interactive learning experience.</p>
+      </div>
+      <div class="steps">
+        <div class="step fade-in" style="--i: 0">
+          <div class="step__number">01</div>
+          <div class="step__content">
+            <div class="step__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <h3 class="step__title">Upload Your Materials</h3>
+            <p class="step__desc">Drop in PDFs, lecture slides, textbooks, notes — any format. LuraStudy extracts text, splits it into chunks, and generates vector embeddings automatically.</p>
+          </div>
+          <div class="step__connector"></div>
+        </div>
+
+        <div class="step fade-in" style="--i: 1">
+          <div class="step__number">02</div>
+          <div class="step__content">
+            <div class="step__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3 class="step__title">AI Processes Everything</h3>
+            <p class="step__desc">Your chosen LLM analyzes the content. Documents are indexed in a vector database for semantic search. Knowledge bases are built from your material.</p>
+          </div>
+          <div class="step__connector"></div>
+        </div>
+
+        <div class="step fade-in" style="--i: 2">
+          <div class="step__number">03</div>
+          <div class="step__content">
+            <div class="step__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <h3 class="step__title">Study Smarter</h3>
+            <p class="step__desc">Generate flashcards with SM-2 spaced repetition, take AI-powered quizzes, or chat naturally with your documents. Track your progress and master the material.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TECH STACK ==================== -->
+  <section class="tech-stack section" id="tech-stack">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section__label">Architecture</span>
+        <h2 class="section__title">Built with <span class="gradient-text">Modern Stack</span></h2>
+        <p class="section__desc">A production-ready architecture designed for privacy, performance, and extensibility.</p>
+      </div>
+
+      <div class="stack-diagram fade-in">
+        <div class="stack-layer stack-layer--frontend">
+          <div class="stack-layer__label">Frontend</div>
+          <div class="stack-layer__techs">
+            <span class="tech-badge">React 18</span>
+            <span class="tech-badge">Vite 5</span>
+            <span class="tech-badge">React Router 6</span>
+          </div>
+          <div class="stack-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+          </div>
+        </div>
+
+        <div class="stack-layer stack-layer--backend">
+          <div class="stack-layer__label">Backend API</div>
+          <div class="stack-layer__techs">
+            <span class="tech-badge">FastAPI</span>
+            <span class="tech-badge">Python 3.11</span>
+            <span class="tech-badge">SQLAlchemy 2</span>
+            <span class="tech-badge">JWT Auth</span>
+          </div>
+          <div class="stack-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+          </div>
+        </div>
+
+        <div class="stack-layer stack-layer--database">
+          <div class="stack-layer__label">Database</div>
+          <div class="stack-layer__techs">
+            <span class="tech-badge">PostgreSQL 16</span>
+            <span class="tech-badge">pgvector</span>
+          </div>
+          <div class="stack-row">
+            <div class="stack-layer stack-layer--llm stack-layer--half">
+              <div class="stack-layer__label">AI Providers</div>
+              <div class="stack-layer__techs">
+                <span class="tech-badge">Ollama</span>
+                <span class="tech-badge">OpenAI</span>
+                <span class="tech-badge">vLLM</span>
+                <span class="tech-badge">Any OpenAI-compatible</span>
+              </div>
+            </div>
+            <div class="stack-layer stack-layer--orchestration stack-layer--half">
+              <div class="stack-layer__label">Orchestration</div>
+              <div class="stack-layer__techs">
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">Docker Compose</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack-urls fade-in">
+        <h3 class="stack-urls__title">Service URLs</h3>
+        <div class="stack-urls__grid">
+          <div class="url-card">
+            <span class="url-card__service">Frontend</span>
+            <a href="http://localhost:5173" target="_blank" rel="noopener" class="url-card__url">http://localhost:5173</a>
+          </div>
+          <div class="url-card">
+            <span class="url-card__service">Backend API</span>
+            <a href="http://localhost:8000" target="_blank" rel="noopener" class="url-card__url">http://localhost:8000</a>
+          </div>
+          <div class="url-card">
+            <span class="url-card__service">API Docs</span>
+            <a href="http://localhost:8000/docs" target="_blank" rel="noopener" class="url-card__url">http://localhost:8000/docs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MEDIA / GALLERY ==================== -->
+  <section class="media section" id="media">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section__label">Gallery</span>
+        <h2 class="section__title">See <span class="gradient-text">LuraStudy</span> in Action</h2>
+        <p class="section__desc">Screenshots, demos, and media coming soon. Replace these placeholders with your own content.</p>
+      </div>
+      <div class="media__grid fade-in">
+        <div class="media__placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Screenshot or GIF</span>
+        </div>
+        <div class="media__placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Screenshot or GIF</span>
+        </div>
+        <div class="media__placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Video Demo</span>
+        </div>
+        <div class="media__placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Screenshot or GIF</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="#6c63ff"/>
+          <text x="16" y="22" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="white" text-anchor="middle">L</text>
+        </svg>
+        <span class="footer__brand-text">LuraStudy</span>
+      </div>
+      <p class="footer__desc">Your private, self-hosted AI study assistant. Local-first, privacy-focused, and completely free.</p>
+      <div class="footer__links">
+        <a href="https://github.com/JoshuaJeffreyGimmel/lurastudy" target="_blank" rel="noopener" class="footer__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://github.com/JoshuaJeffreyGimmel/lurastudy/blob/main/LICENSE" target="_blank" rel="noopener" class="footer__link">MIT License</a>
+        <a href="https://hub.docker.com/u/joshuajeffreygimmel" target="_blank" rel="noopener" class="footer__link">Docker Hub</a>
+      </div>
+      <p class="footer__copyright">
+        Built with ❤️ by <a href="https://github.com/JoshuaJeffreyGimmel" target="_blank" rel="noopener">Joshua Jeffrey Gimmel</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
