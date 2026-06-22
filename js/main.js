@@ -187,7 +187,51 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================
-  // 9. SCROLL INDICATOR CLICK — scroll to features
+  // 9. LIGHTBOX — click image to view fullscreen
+  // =========================================================
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  function openLightbox(src, alt) {
+    lightboxImage.src = src;
+    lightboxImage.alt = alt || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Open lightbox on image click
+  document.querySelectorAll('.media__image, .hero__screenshot').forEach(img => {
+    img.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openLightbox(img.src, img.alt);
+    });
+  });
+
+  // Close on close button click
+  lightboxClose.addEventListener('click', closeLightbox);
+
+  // Close on overlay click (click outside image)
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+
+  // =========================================================
+  // 10. SCROLL INDICATOR CLICK — scroll to features
   // =========================================================
   const scrollIndicator = document.querySelector('.hero__scroll-indicator');
   if (scrollIndicator) {

@@ -77,38 +77,8 @@
         </div>
       </div>
       <div class="hero__visual">
-        <div class="hero__mockup">
-          <div class="mockup__bar">
-            <span></span><span></span><span></span>
-            <span class="mockup__bar-title">LuraStudy</span>
-          </div>
-          <div class="mockup__content">
-            <div class="mockup__sidebar">
-              <div class="mockup__sidebar-item"></div>
-              <div class="mockup__sidebar-item"></div>
-              <div class="mockup__sidebar-item"></div>
-            </div>
-            <div class="mockup__main">
-              <div class="mockup__card">
-                <div class="mockup__card-header"></div>
-                <div class="mockup__card-body">
-                  <div class="mockup__line"></div>
-                  <div class="mockup__line"></div>
-                  <div class="mockup__line mockup__line--short"></div>
-                </div>
-              </div>
-              <div class="mockup__card">
-                <div class="mockup__card-header"></div>
-                <div class="mockup__card-body">
-                  <div class="mockup__line"></div>
-                  <div class="mockup__line"></div>
-                  <div class="mockup__line mockup__line--short"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="mockup__glow"></div>
-        </div>
+        <img src="images/image(hero).png" alt="LuraStudy app screenshot" class="hero__screenshot">
+        <div class="mockup__glow"></div>
       </div>
     </div>
     <div class="hero__scroll-indicator">
@@ -443,24 +413,26 @@ docker compose -f docker-compose.yml -f docker-compose.cloud.yml up --build</cod
       <div class="section__header fade-in">
         <span class="section__label">Gallery</span>
         <h2 class="section__title">See <span class="gradient-text">LuraStudy</span> in Action</h2>
-        <p class="section__desc">Screenshots, demos, and media coming soon. Replace these placeholders with your own content.</p>
+        <p class="section__desc">Screenshots of LuraStudy in action — flashcards, quizzes, document chat, and more.</p>
       </div>
       <div class="media__grid fade-in">
-        <div class="media__placeholder">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Screenshot or GIF</span>
+        <div class="media__item">
+          <img src="images/image%20(1).png" alt="LuraStudy screenshot 1" class="media__image" loading="lazy">
         </div>
-        <div class="media__placeholder">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Screenshot or GIF</span>
+        <div class="media__item">
+          <img src="images/image%20(2).png" alt="LuraStudy screenshot 2" class="media__image" loading="lazy">
         </div>
-        <div class="media__placeholder">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Video Demo</span>
+        <div class="media__item">
+          <img src="images/image%20(3).png" alt="LuraStudy screenshot 3" class="media__image" loading="lazy">
         </div>
-        <div class="media__placeholder">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Screenshot or GIF</span>
+        <div class="media__item">
+          <img src="images/image%20(4).png" alt="LuraStudy screenshot 4" class="media__image" loading="lazy">
+        </div>
+        <div class="media__item">
+          <img src="images/image%20(5).png" alt="LuraStudy screenshot 5" class="media__image" loading="lazy">
+        </div>
+        <div class="media__item">
+          <img src="images/image%20(6).png" alt="LuraStudy screenshot 6" class="media__image" loading="lazy">
         </div>
       </div>
     </div>
@@ -487,6 +459,12 @@ docker compose -f docker-compose.yml -f docker-compose.cloud.yml up --build</cod
       </p>
     </div>
   </footer>
+
+  <!-- ==================== LIGHTBOX ==================== -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">&times;</button>
+    <img class="lightbox__image" id="lightboxImage" src="" alt="">
+  </div>
 
   <script src="js/main.js"></script>
 </body>
